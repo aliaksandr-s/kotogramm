@@ -15,13 +15,14 @@ angular.module('myApp').controller('mainController', ['$scope', '$http', 'Upload
 
     $scope.uploadPic = function(file) {
       console.log(file)
-    file.upload = Upload.upload({
-      url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
-      data: {file: file},
-    }).then(function(res){
-      console.log(res)
-      $scope.pictures.push('http://www.animalspot.net/wp-content/uploads/2012/01/Monkey-Photos.jpg')
-    })
+      Upload.upload({
+        url: 'http://127.0.0.1:3000/pictures/save',
+        method: 'POST',
+        file: file
+      }).then(function(res){
+        console.log(res)
+        $scope.pictures.push('http://www.animalspot.net/wp-content/uploads/2012/01/Monkey-Photos.jpg')
+      })
 
     // file.upload.then(function (response) {
     //   console.log(response)
