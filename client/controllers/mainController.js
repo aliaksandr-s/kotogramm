@@ -21,7 +21,7 @@ angular.module('myApp').controller('mainController', ['$scope', '$http', 'Upload
         file: file
       }).then(function(res){
         console.log(res)
-        $scope.pictures.push('http://www.animalspot.net/wp-content/uploads/2012/01/Monkey-Photos.jpg')
+        $scope.pictures.push(res.data)
       })
 
     // file.upload.then(function (response) {
