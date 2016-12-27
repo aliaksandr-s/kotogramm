@@ -1,26 +1,23 @@
-angular.module('myApp').controller('mainController', ['$scope', '$http', 'Upload', '$timeout',
-  function ($scope, $http, Upload, $timeout) {
+angular.module('myApp').controller('mainController', ['$scope', '$http', 'Upload', '$timeout', 'PictureService',
+  function ($scope, $http, Upload, $timeout, PictureService) {
 
     $scope.isDisabled = false;
 
     $scope.uploadPic = function (file) {
       $scope.isDisabled = true;
 
-      Upload.upload({
-        url: 'http://127.0.0.1:3000/pictures/save',
-        method: 'POST',
-        file: file
-      }).then(function (res) {
-        $scope.isDisabled = false;
-        $scope.picFile = null;
-        $scope.pictures.push(res.data);
-      }).catch(function(err){
+      PictureService.uploadPic(file)
+        .then(function (res) {
+          $scope.isDisabled = false;
+          $scope.picFile = null;
+          $scope.pictures.push(res.data);
+        }).catch(function(err){
           console.log(err)
-      })
+        })
     }
 
     $scope.getAllPics = function () {
-      $http.get('http://127.0.0.1:3000/pictures/get-all')
+      PictureService.getAllPics()
         .then(function (res) {
           if (res.data) {
             $scope.pictures = res.data;
