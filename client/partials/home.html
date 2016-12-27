@@ -7,10 +7,21 @@ Photo:
 <br>
 <br>
 <br>
+
+<!--
 <div class="row">
     <div ng-repeat="picture in pictures" class="col-lg-3 col-md-4 col-xs-6 thumb">
         <span class="thumbnail" href="#">
             <img class="img-responsive" ng-src="{{picture}}" alt="">
         </span>
     </div>
+</div>-->
+
+
+<div class="my_container">
+  <ul>
+    <li class="block" ng-repeat="picture in pictures">
+      <img ng-src="{{picture}}" />
+    </li>
+  </ul>  
 </div>
