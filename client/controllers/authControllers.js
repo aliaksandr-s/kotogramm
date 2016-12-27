@@ -36,7 +36,7 @@ angular.module('myApp').controller('logoutController',
       // call logout from service
       AuthService.logout()
         .then(function () {
-          $location.path('/');
+          $location.path('/login');
         });
 
     };
