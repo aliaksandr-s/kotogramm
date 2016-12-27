@@ -3,6 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var cloudinary = require('cloudinary');
 var fs = require('fs');
+var findRemoveSync = require('find-remove');
 var multiparty = require('connect-multiparty');
 var User = require('../models/user');
 
@@ -19,8 +20,8 @@ cloudinary.config({
 router.post('/save', multipartyMiddleware, function (req, res) {
   var file = req.files.file;
 
-  // add removal later from uploads
   cloudinary.uploader.upload(file.path, function (result) {
+    findRemoveSync('./uploads', {dir: "*", files: "*.*"})
     User.findByIdAndUpdate(
        req.user,
        {$push: {"images": result.url}},

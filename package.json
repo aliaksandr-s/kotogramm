@@ -13,6 +13,7 @@
     "debug": "^2.2.0",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
+    "find-remove": "^1.0.0",
     "mongoose": "^4.4.5",
     "morgan": "^1.7.0",
     "multiparty": "^4.1.2",
