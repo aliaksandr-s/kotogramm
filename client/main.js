@@ -26,6 +26,11 @@ myApp.config(function ($routeProvider) {
       controller: 'usersController',
       access: {restricted: false}
     })
+    .when('/settings', {
+      templateUrl: 'partials/settings.html',
+      controller: 'settingsController',
+      access: {restricted: true}
+    })
     .when('/two', {
       template: '<h1>This is page two!</h1>',
       access: {restricted: true}

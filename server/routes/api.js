@@ -76,4 +76,20 @@ router.get('/all-users', function(req, res) {
   });
 })
 
+
+// settings routes
+router.get('/settings/get-privacy', function (req, res) {
+  if (req.user) {
+      User.findById(req.user, function (err, user) {
+      if (err) console.log(err);
+      res.send({
+        username: req.user.username,
+        private: user.private
+      })  
+    })
+  } else {
+    res.send('no such user')
+  }
+})
+
 module.exports = router;

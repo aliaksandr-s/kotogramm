@@ -1,5 +1,5 @@
-angular.module('myApp').controller('mainController', ['$scope', '$http', 'Upload', '$timeout', 'PictureService',
-  function ($scope, $http, Upload, $timeout, PictureService) {
+angular.module('myApp').controller('mainController', ['$scope', 'PictureService',
+  function ($scope, PictureService) {
 
     $scope.isDisabled = false;
 
