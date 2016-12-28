@@ -7,7 +7,11 @@ var User = require('../models/user.js');
 
 
 router.post('/register', function(req, res) {
-  User.register(new User({ username: req.body.username }),
+  User.register(new User({ 
+      username: req.body.username,
+      isAdmin: false,
+      private: false 
+    }),
     req.body.password, function(err, account) {
     if (err) {
       return res.status(500).json({
@@ -62,5 +66,14 @@ router.get('/status', function(req, res) {
     status: true
   });
 });
+
+router.get('/all-users', function(req, res) {
+  User.find({}, '-_id username images', function(err, users) {
+    if (err) {
+      res.send(err)
+    }
+    res.send(users);  
+  });
+})
 
 module.exports = router;
