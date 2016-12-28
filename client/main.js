@@ -23,6 +23,7 @@ myApp.config(function ($routeProvider) {
     })
     .when('/users', {
       templateUrl: 'partials/users.html',
+      controller: 'usersController',
       access: {restricted: false}
     })
     .when('/two', {

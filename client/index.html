@@ -22,6 +22,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
+                <li ng-show="user"><a href="#/settings">Settings</a></li>
                 <li ng-show="!user"><a href="#/login">Login</a></li>
                 <li ng-show="!user"><a href="#/register">Register</a></li>
                 <li ng-show="user"><a href="#" ng-controller="logoutController" ng-click="logout()">Logout</a></li>
@@ -48,10 +49,12 @@
 <!--services-->
 <script src="./services/authService.js"></script>
 <script src="./services/pictureService.js"></script>
+<script src="./services/usersService.js"></script>
 
 <!--controllers-->
 <script src="./controllers/authControllers.js"></script>
 <script src="./controllers/mainController.js"></script>
+<script src="./controllers/usersController.js"></script>
 
 </body>
 </html>
