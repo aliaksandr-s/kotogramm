@@ -4,7 +4,7 @@ angular.module('myApp').factory('SettingsService',
 
     return ({
       getPrivacy: getPrivacy,
-      // setPrivacy: setPrivacy
+      setPrivacy: setPrivacy
     })
 
     function getPrivacy () {
@@ -21,11 +21,20 @@ angular.module('myApp').factory('SettingsService',
         return deferred.promise;
     }
 
-    function setPrivacy () {
+    function setPrivacy (privacy) {
       var deferred = $q.defer();
 
-      $http.post('http://127.0.0.1:3000/user/settings/get-privacy')
-    }
+      $http.put('http://127.0.0.1:3000/user/settings/change-privacy', {
+        privacy: privacy
+      })
+      .then(function (data) {
+        deferred.resolve(data)
+      })
+      .catch(function (err) {
+        deferred.reject(err)
+      })
 
+      return deferred.promise;
+    }
 
 }]);

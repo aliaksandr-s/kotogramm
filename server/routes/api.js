@@ -92,4 +92,10 @@ router.get('/settings/get-privacy', function (req, res) {
   }
 })
 
+router.put('/settings/change-privacy', function (req, res) {
+  User.findByIdAndUpdate(req.user, { private: req.body.privacy }, function (err, user) {
+    if (err) console.log(err);
+  })
+})
+
 module.exports = router;
