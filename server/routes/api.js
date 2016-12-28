@@ -68,7 +68,7 @@ router.get('/status', function(req, res) {
 });
 
 router.get('/all-users', function(req, res) {
-  User.find({}, '-_id username images', function(err, users) {
+  User.find({private: false}, '-_id username images', function(err, users) {
     if (err) {
       res.send(err)
     }
