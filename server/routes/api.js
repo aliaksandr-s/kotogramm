@@ -76,6 +76,14 @@ router.get('/all-users', function(req, res) {
   });
 })
 
+router.get('/:username', function (req, res) {
+  User.findOne({ username: req.params.username, private: false}, '-_id username images', function (err, user) {
+    if (err) console.log(err);
+    if (!user) res.sendStatus(404);
+    else res.send(user);
+  })
+})
+
 
 // settings routes
 router.get('/settings/get-privacy', function (req, res) {

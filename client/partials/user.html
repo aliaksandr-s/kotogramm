@@ -1,5 +1,5 @@
-<h2>{{username}}'s pictures</h2>
-
+<h2 ng-show="!error">{{username}}'s pictures</h2>
+<div ng-show="error" class="alert alert-warning">Sorry that user doesn't exist or it's private</div>
 <div class="my_container">
   <ul>
     <li class="block" ng-repeat="picture in pictures">

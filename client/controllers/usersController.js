@@ -1,6 +1,6 @@
 angular.module('myApp').controller('usersController', 
-  ['$scope', 'UsersService', '$location', '$rootScope',
-  function ($scope, UsersService, $location, $rootScope) {
+  ['$scope', 'UsersService', '$location',
+  function ($scope, UsersService, $location) {
     
     $scope.getAllUsers = function () {
       UsersService.getAllUsers()
@@ -14,7 +14,6 @@ angular.module('myApp').controller('usersController',
     }
 
     $scope.showUser = function (user) {
-      $rootScope.currentUser = user;
       var currentUser = '/users/' + user.username;
       $location.path(currentUser);
     }
