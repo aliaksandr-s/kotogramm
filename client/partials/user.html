@@ -1,3 +1,13 @@
+
+<div ng-show="isAdmin">
+  <p>Upload pictures to the user</p>
+  <input type="file" ngf-select ng-model="picFile" name="file" accept="image/*" ngf-max-size="10MB" required ngf-model-invalid="errorFile">
+  <button ng-disabled="isDisabled" ng-click="uploadPic(picFile)">Submit</button>
+  <span ng-show="picFile.result">Upload Successful</span>
+  <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+</div>
+
+
 <h2 ng-show="!error">{{username}}'s pictures</h2>
 <div ng-show="error" class="alert alert-warning">Sorry that user doesn't exist or it's private</div>
 <div class="my_container">

@@ -11,7 +11,8 @@ angular.module('myApp').factory('AuthService',
       getUserStatus: getUserStatus,
       login: login,
       logout: logout,
-      register: register
+      register: register,
+      isAdmin: isAdmin
     });
 
     function isLoggedIn() {
@@ -111,6 +112,25 @@ angular.module('myApp').factory('AuthService',
         // handle error
         .error(function (data) {
           deferred.reject(data);
+        });
+
+      // return promise object
+      return deferred.promise;
+
+    }
+
+
+    function isAdmin() {
+      var deferred = $q.defer();
+
+      $http.get('/user/is-admin')
+        // handle success
+        .success(function (data) {
+          deferred.resolve(data);
+        })
+        // handle error
+        .error(function (err) {
+          deferred.reject(err);
         });
 
       // return promise object

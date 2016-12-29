@@ -76,6 +76,21 @@ router.get('/all-users', function(req, res) {
   });
 })
 
+
+router.get('/is-admin', function (req, res) {
+  if (req.user) {
+    User.findById(req.user, function (err, user) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(req.user.isAdmin)
+      }
+    })
+  } else {
+    res.send(false)
+  }
+})
+
 router.get('/:username', function (req, res) {
   User.findOne({ username: req.params.username, private: false}, '-_id username images', function (err, user) {
     if (err) console.log(err);
@@ -83,7 +98,6 @@ router.get('/:username', function (req, res) {
     else res.send(user);
   })
 })
-
 
 // settings routes
 router.get('/settings/get-privacy', function (req, res) {

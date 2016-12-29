@@ -24,6 +24,7 @@ var app = express();
 var userRoutes = require('./routes/api.js');
 var authRoutes = require('./routes/auth.js');
 var pictureRoutes = require('./routes/pictures.js');
+var adminRoutes = require('./routes/admin.js')
 
 // define middleware
 app.use(express.static(path.join(__dirname, '../client')));
@@ -49,6 +50,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 app.use('/pictures', pictureRoutes);
+app.use('/admin', adminRoutes);
 
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, '../client', 'index.html'));
