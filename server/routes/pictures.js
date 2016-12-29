@@ -11,12 +11,6 @@ var multipartyMiddleware = multiparty({
   uploadDir: './uploads'
 });
 
-cloudinary.config({
-  cloud_name: 'dpojy95nf',
-  api_key: '782415393211716',
-  api_secret: '288qvYM8NQ9qh0Tv9fPaxRVLQC4'
-});
-
 router.post('/save', multipartyMiddleware, function (req, res) {
   var file = req.files.file;
 

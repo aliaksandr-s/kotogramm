@@ -7,6 +7,7 @@ var expressSession = require('express-session');
 var mongoose = require('mongoose');
 var hash = require('bcrypt-nodejs');
 var path = require('path');
+var cloudinary = require('cloudinary');
 var passport = require('passport');
 var localStrategy = require('passport-local' ).Strategy;
 
@@ -45,6 +46,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 passport.use(new localStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+// cloudinary config
+cloudinary.config({
+  cloud_name: 'dpojy95nf',
+  api_key: '782415393211716',
+  api_secret: '288qvYM8NQ9qh0Tv9fPaxRVLQC4'
+});
 
 // routes
 app.use('/auth', authRoutes);
