@@ -46,4 +46,17 @@ router.get('/get-all', function (req, res) {
   }
 })
 
+// --------> ++ add remove from cloudinary later
+router.delete('/:picUrl', function (req, res) {
+  User.findOne(req.user, function (err, user) {
+    if (!err) {
+      var index = user.images.indexOf(req.params.picUrl)
+      user.images.splice(index, 1)
+      user.save(function (err) {
+        if (!err) res.sendStatus(200);
+      })
+    }
+  })
+})
+
 module.exports = router;

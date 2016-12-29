@@ -4,7 +4,8 @@ angular.module('myApp').factory('PictureService',
 		
 		return ({
 			uploadPic: uploadPic,
-			getAllPics: getAllPics
+			getAllPics: getAllPics,
+			removePicture: removePicture
 		})
 
 		function uploadPic (file) {
@@ -39,5 +40,20 @@ angular.module('myApp').factory('PictureService',
         })
 			return deferred.promise;
     }
+
+		function removePicture (picUrl) {
+
+			var deferred = $q.defer();
+
+      $http.delete('http://127.0.0.1:3000/pictures/' + picUrl )
+        .then(function (data) {
+					deferred.resolve(data)
+        })
+        .catch(function(err){
+					deferred.reject(err)
+        })
+			return deferred.promise;
+
+		}
 
 }])

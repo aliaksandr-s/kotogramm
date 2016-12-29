@@ -30,6 +30,21 @@ angular.module('myApp').controller('mainController', ['$scope', 'PictureService'
         })
     }
 
+    $scope.deletePic = function (pic) {
+        var picUrl = encodeURIComponent(pic);
+        console.log(pic)
+        PictureService.removePicture(picUrl)
+          .then(function (res) {
+            console.log(res)
+          })
+          .catch(function (err) {
+            console.log(err)
+          })
+
+        var index = $scope.pictures.indexOf(pic);
+        $scope.pictures.splice(index, 1);     
+    }
+
     $scope.$on('$viewContentLoaded', function () {
       $scope.getAllPics();
     });
