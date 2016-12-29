@@ -35,14 +35,12 @@ angular.module('myApp').controller('mainController', ['$scope', 'PictureService'
         console.log(pic)
         PictureService.removePicture(picUrl)
           .then(function (res) {
-            console.log(res)
+            var index = $scope.pictures.indexOf(pic);
+            $scope.pictures.splice(index, 1);     
           })
           .catch(function (err) {
             console.log(err)
           })
-
-        var index = $scope.pictures.indexOf(pic);
-        $scope.pictures.splice(index, 1);     
     }
 
     $scope.$on('$viewContentLoaded', function () {
