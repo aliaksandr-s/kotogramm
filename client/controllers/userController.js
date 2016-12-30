@@ -1,10 +1,12 @@
 angular.module('myApp').controller('userController', 
-  ['$scope', 'UsersService', '$routeParams', 'AuthService',
-  function ($scope, UsersService, $routeParams, AuthService) {
+  ['$scope', 'UsersService', '$routeParams', 'AuthService', 'AdminService',
+  function ($scope, UsersService, $routeParams, AuthService, AdminService) {
+
+    $scope.isDisabled = false;
 
     $scope.$on('$viewContentLoaded', function () {
       $scope.getUserByName($routeParams.user);
-      $scope.checkIfAdmin()
+      $scope.checkIfAdmin();
     });
 
     $scope.getUserByName = function(username) {
@@ -25,6 +27,21 @@ angular.module('myApp').controller('userController',
           $scope.isAdmin = res;
         })
         .catch(function (err) {
+          console.log(err)
+        })
+    }
+
+
+
+    $scope.uploadPictureToUser = function (file, user) {
+      $scope.isDisabled = true;
+
+      AdminService.uploadPictureToUser(file, user)
+        .then(function (res) {
+          $scope.isDisabled = false;
+          $scope.picFile = null;
+          $scope.pictures.push(res.data);
+        }).catch(function(err){
           console.log(err)
         })
     }

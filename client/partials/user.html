@@ -2,7 +2,7 @@
 <div ng-show="isAdmin">
   <p>Upload pictures to the user</p>
   <input type="file" ngf-select ng-model="picFile" name="file" accept="image/*" ngf-max-size="10MB" required ngf-model-invalid="errorFile">
-  <button ng-disabled="isDisabled" ng-click="uploadPic(picFile)">Submit</button>
+  <button ng-disabled="isDisabled" ng-click="uploadPictureToUser(picFile, username)">Submit</button>
   <span ng-show="picFile.result">Upload Successful</span>
   <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
 </div>
