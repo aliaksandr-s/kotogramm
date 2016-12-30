@@ -29,8 +29,39 @@ router.post('/upload-picture', multipartyMiddleware, function (req, res) {
 
 })
 
-router.get('/test/:user/:id', function (req, res) {
-  res.send(req.params)
+router.delete('/delete-picture/:user/:picUrl', checkIfAdmin, function (req, res) {
+  User.findOne({username: req.params.user}, function (err, user) {
+    if (!err) {
+      var index = user.images.indexOf(req.params.picUrl);
+      if (index >= 0) {
+        user.images.splice(index, 1)
+        user.save(function (err) {
+          if (!err) res.sendStatus(200);
+        })
+      } else {
+        res.status(404).send('No such image')
+      }
+    }
+  })
 })
+
+function checkIfAdmin(req, res, next) {
+  if (req.user) {
+    User.findById(req.user, function (err, user) {
+      if (err) {
+        console.log(err);
+      } else {
+        if (req.user.isAdmin) {
+          next()
+        } else {
+          res.status(403).send('You are not admin')
+        }
+      }
+    })
+  } else {
+    res.status(404).send('Please log in')
+  }
+}
+
 
 module.exports = router;
