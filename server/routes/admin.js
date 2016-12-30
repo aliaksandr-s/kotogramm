@@ -59,7 +59,7 @@ function checkIfAdmin(req, res, next) {
       }
     })
   } else {
-    res.status(404).send('Please log in')
+    res.status(403).send('Please log in')
   }
 }
 

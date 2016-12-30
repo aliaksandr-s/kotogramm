@@ -4,7 +4,7 @@ angular.module('myApp').factory('AdminService',
 
     return ({
       uploadPictureToUser: uploadPictureToUser,
-      // deltePicture: deletePicture
+      removePicture: removePicture
     });
 
     function uploadPictureToUser (file, user) {
@@ -17,13 +17,36 @@ angular.module('myApp').factory('AdminService',
         file: file,
         data: {user: user}
       })
+
 			.then(function (data) {
 				deferred.resolve(data)
       })
+
 			.catch(function(err){
 				deferred.reject(err);
       })
+
 			return deferred.promise;
     } 
+
+
+		function removePicture (user, picUrl) {
+
+			var deferred = $q.defer();
+
+      $http.delete('http://127.0.0.1:3000/admin/delete-picture/' + user + '/' + picUrl )
+
+        .then(function (data) {
+					deferred.resolve(data)
+        })
+      
+        .catch(function(err){
+					deferred.reject(err)
+        })
+			
+      return deferred.promise;
+
+		}
+
 
   }])

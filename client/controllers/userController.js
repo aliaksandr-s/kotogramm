@@ -31,17 +31,33 @@ angular.module('myApp').controller('userController',
         })
     }
 
-
-
     $scope.uploadPictureToUser = function (file, user) {
       $scope.isDisabled = true;
 
       AdminService.uploadPictureToUser(file, user)
+
         .then(function (res) {
           $scope.isDisabled = false;
           $scope.picFile = null;
           $scope.pictures.push(res.data);
-        }).catch(function(err){
+        })
+        
+        .catch(function(err){
+          console.log(err)
+        })
+    }
+
+    $scope.deletePictureFromUser = function (user, pic) {
+      var picUrl = encodeURIComponent(pic);
+
+      AdminService.removePicture(user, picUrl)
+
+        .then(function (res) {
+          var index = $scope.pictures.indexOf(pic);
+          $scope.pictures.splice(index, 1);     
+        })
+
+        .catch(function (err) {
           console.log(err)
         })
     }

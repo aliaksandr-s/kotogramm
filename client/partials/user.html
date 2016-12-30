@@ -12,7 +12,7 @@
 <div ng-show="error" class="alert alert-warning">Sorry that user doesn't exist or it's private</div>
 <div class="my_container">
   <ul>
-    <li class="block" ng-repeat="picture in pictures">
+    <li class="block" ng-repeat="picture in pictures" ng-click="deletePictureFromUser(username, picture)">
       <img ng-src="{{picture}}" />
     </li>
   </ul>  
