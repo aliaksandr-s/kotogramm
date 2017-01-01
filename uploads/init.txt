@@ -1,0 +1,1 @@
+All the files will be uploaded to this folder before transfering to the cloudinary.
