@@ -5,13 +5,14 @@
   <span ng-show="picFile.result">Upload Successful</span>
   <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
 </div>
+
 <h2 ng-show="!error">{{username}}'s pictures</h2>
 <div ng-show="error" class="alert alert-warning">Sorry that user doesn't exist or it's private</div>
 <div class="my_container">
   <ul>
     <li class="block" ng-repeat="picture in pictures">
       <img ng-src="{{picture}}" />
-      <span class="block-settings">
+      <span class="block-settings" ng-show="isAdmin">
         <span href="#" class="close" ng-click="deletePictureFromUser(username, picture)"></span>
       </span>
     </li>
