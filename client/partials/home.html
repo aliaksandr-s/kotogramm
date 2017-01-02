@@ -10,8 +10,11 @@
 
 <div class="my_container">
   <ul>
-    <li class="block" ng-repeat="picture in pictures" ng-click="deletePic(picture)">
+    <li class="block" ng-repeat="picture in pictures">
       <img ng-src="{{picture}}" />
+      <span class="block-settings">
+        <span href="#" class="close" ng-click="deletePic(picture)"></span>
+      </span>
     </li>
   </ul>  
 </div>

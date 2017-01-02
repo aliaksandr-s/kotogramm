@@ -13,13 +13,62 @@
   clear: both;
 }
 .my_container ul .block {
-  width: 20%;
+  width: 25%;
   height: auto;
   position: relative;
   float: left;
   margin: 0 0 0 0;
   padding: 0 0 20% 0;
   transition: 0.8s ease;
+}
+
+.block .block-settings {
+  background-color: black;
+  opacity: 0;
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 228px;
+  transition: opacity 0.2s ease-in;
+}
+
+.block:hover .block-settings {
+  opacity: 0.7
+}
+
+
+/*cross button*/
+
+.close {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 32px;
+  height: 32px;
+  opacity: 0;
+}
+.block:hover .close {
+  opacity: 0.7;
+}
+
+.close:hover:before, .close:hover:after {
+  background-color: red;
+}
+
+.close:before, .close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 25px;
+  width: 2px;
+  background-color: white;
+  transition: all 0.1s ease-in;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
 }
 
 @media screen and (max-width: 1280px) {
