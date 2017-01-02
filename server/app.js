@@ -13,7 +13,7 @@ var localStrategy = require('passport-local' ).Strategy;
 
 // mongoose
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/mean-auth');
+mongoose.connect('mongodb://localhost/kotogramm');
 
 // user schema/model
 var User = require('./models/user.js');

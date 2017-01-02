@@ -6,6 +6,7 @@ var findRemoveSync = require('find-remove');
 var multiparty = require('connect-multiparty');
 var mongoose = require('mongoose');
 var User = require('../models/user.js');
+var utils = require('../utils');
 
 var multipartyMiddleware = multiparty({
   uploadDir: './uploads'
@@ -33,17 +34,24 @@ router.delete('/delete-picture/:user/:picUrl', checkIfAdmin, function (req, res)
   User.findOne({username: req.params.user}, function (err, user) {
     if (!err) {
       var index = user.images.indexOf(req.params.picUrl);
+      var id = utils.getImgId(req.params.picUrl);
+
       if (index >= 0) {
-        user.images.splice(index, 1)
-        user.save(function (err) {
-          if (!err) res.sendStatus(200);
+        cloudinary.uploader.destroy(id, function(result) { 
+
+          user.images.splice(index, 1)
+          user.save(function (err) {
+            if (!err) res.sendStatus(200);
+          })
+
         })
       } else {
         res.status(404).send('No such image')
       }
     }
   })
-})
+});
+
 
 function checkIfAdmin(req, res, next) {
   if (req.user) {
